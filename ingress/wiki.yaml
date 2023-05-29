@@ -1,0 +1,32 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: wiki-gateway
+  namespace: wiki
+spec:
+  selector:
+    istio: ingress # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "wiki.juny.me"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: wiki
+  namespace: wiki
+spec:
+  hosts:
+  - "wiki.juny.me"
+  gateways:
+  - wiki-gateway
+  http:
+  - route:
+    - destination:
+        host: wiki
+        port:
+          number: 80
