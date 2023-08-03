@@ -1,11 +1,11 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: argocd-gateway
+  name: argocd
   namespace: argocd
 spec:
   selector:
-    istio: ingress # use istio default controller
+    istio: ingressgateway # use istio default controller
   servers:
   - port:
       number: 80
@@ -23,7 +23,7 @@ spec:
   hosts:
   - "argocd.juny.me"
   gateways:
-  - argocd-gateway
+  - argocd
   http:
   - route:
     - destination:
