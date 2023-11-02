@@ -14,11 +14,18 @@ spec:
         paths:
           - backend:
               service:
-                name: traefik-dashboard
+                name: traefik-dashboard-metrics
                 port:
-                  number: 9000
-            path: /
+                  number: 9100
+            path: /metrics
             pathType: Prefix
+          # - backend:
+          #     service:
+          #       name: traefik-dashboard
+          #       port:
+          #         number: 9000
+          #   path: /
+          #   pathType: Prefix
   tls:
     - hosts:
         - traefik.juny.me
